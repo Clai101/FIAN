@@ -1,0 +1,283 @@
+
+\documentclass[a4paper]{article}
+
+%Пакеты для математических символов:
+\usepackage{amsmath} % американское математическое сообщество.
+\usepackage{amssymb} % миллион разных значков и готический, ажурный шрифты.
+\usepackage{amscd} % диаграммы, графики.
+\usepackage{amsthm} % окружения теорем, определений и тд.
+\usepackage{physics} % основные физические символы
+%\usepackage{latexsym} % треугольники и пьяная стрелка.
+
+%пакеты для шрифтов:
+%\usepackage{euscript} % прописной шрифт с завитушками.
+\usepackage{MnSymbol} % Значеки доказательства
+\usepackage{verbatim} % улучшенный шрифт "пишущей машинки".
+%\usepackage{array} % более удобные таблицы.
+%\usepackage{multirow} % мультистолбцы в таблицах.
+%\usepackage{longtable} % таблицы на несколько страниц.
+%\usepackage{latexsym}
+
+\usepackage{etoolbox}
+\usepackage{slashbox} %Разделениени текста \backslashbox{}{}
+\usepackage{collectbox} % Добавляет коробочки, можно складывать туда текст)
+
+
+\usepackage{hyperref} % Ссылки как внешние так и внутренние
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+    
+%Пакеты для оформления:
+\RequirePackage[center, medium]{titlesec}% Стиль секций и заголовков
+%\usepackage[x11names]{xcolor} % 317 новых цветов для текста.
+\usepackage{float} % Позволяет использовать H, h! для локации фигур
+%\usepackage{multicol} % набор текста в несколько колонн.
+\usepackage{graphicx} % расширенные возможности вставки стандартных картинок.
+\usepackage{subcaption} % возможность вставлять картинки в строчку
+%\usepackage{caption} % возможность подавить нумерацию у caption.
+\usepackage{wrapfig} % вставка картинок и таблиц, обтекаемых текстом.
+\usepackage{cancel} % значки для сокращения дробей, упрощения, стремления.
+\usepackage{misccorr} % в заголовках появляется точка, но при ссылке на них ее нет.
+%\usepackage{indentfirst} % отступ у первой строки раздела
+%\usepackage{showkeys} % показывает label формул над их номером.
+%\usepackage{fancyhdr} % удобное создание верхних и нижних колонтитулов.
+%\usepackage{titlesec} % еще одно создание верхних и нижних колонтитулов
+\usepackage{hyperref} % Ссылки как внешние так и внутренние
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{xcolor} %Позволяет перекрасить все страници
+\definecolor{mycolor}{RGB}{244,228,215} %Цвет перекраски
+
+
+%Пакеты шрифтов, кодировок. НЕ МЕНЯТЬ РАСПОЛОЖЕНИЕ.
+\usepackage[utf8]{inputenc} % кодировка символов.
+%\usepackage{mathtext} % позволяет использовать русские буквы в формулах. НЕСОВМЕСТИМО С tempora.
+\usepackage[T1, T2A]{fontenc} % кодировка шрифта.
+\usepackage[english, russian]{babel} % доступные языки.
+
+
+%Отступы и поля:
+%размеры страницы А4 11.7x8.3in
+\textwidth=7.3in % ширина текста
+\textheight=10in % высота текста
+\oddsidemargin=-0.5in % левый отступ(базовый 1дюйм + значение)
+\topmargin=-0.5in % отступ сверху до колонтитула(базовый 1дюйм + значение)
+
+
+%Сокращения
+%Скобочки
+\newcommand{\inrad}[1]{\left( #1 \right)}
+\newcommand{\inner}[1]{\left( #1 \right)}
+\newcommand{\infig}[1]{\left{ #1 \right}}
+\newcommand{\insqr}[1]{\left[ #1 \right]}
+\newcommand{\ave}[1]{\left\langle #1 \right\rangle}
+
+
+
+%% Красивые <= и >=
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+%%Значек выполнятся
+\newcommand{\per}{\hookrightarrow}
+
+%%Векторная алгебра
+\newcommand{\rot}{\text{rot}}
+\renewcommand{\div}{\text{div}}
+\renewcommand{\grad}{\text{grad}}
+
+%% Более привычные греческие буквы
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\com}{\mathbb{C}}
+\newcommand{\re}{\mathbb{R}}
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\stp}{$\filledmedtriangleleft$}
+\newcommand{\enp}{$\filledmedsquare$}
+
+%%Тензорный анализ ОТО теория поля
+\newcommand{\Li}[1]{\mathfrak{L}_{#1}}
+\newcommand{\crist}[3]{\cfrac{1}{2} \inner{g_{#1#2,#3} + g_{#1#3,#2} - g_{#2#3,#1}}}
+\newcommand{\piv}[2]{\cfrac{\partial #1}{\partial #2}}
+
+\makeatletter
+\newcommand{\sqbox}{%
+    \collectbox{%
+        \@tempdima=\dimexpr\width-\totalheight\relax
+        \ifdim\@tempdima<\z@
+            \fbox{\hbox{\hspace{-.5\@tempdima}\BOXCONTENT\hspace{-.5\@tempdima}}}%
+        \else
+            \ht\collectedbox=\dimexpr\ht\collectedbox+.5\@tempdima\relax
+            \dp\collectedbox=\dimexpr\dp\collectedbox+.5\@tempdima\relax
+            \fbox{\BOXCONTENT}%
+        \fi
+    }%
+}
+\makeatother
+\newcommand{\mergelines}[2]{
+\begin{tabular}{llp{.5\textwidth}}
+#1 \\ #2
+\end{tabular}
+}
+\newcommand\tab[1][0.51cm]{\hspace*{#1}}
+\newcommand\difh[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\messageforpeople}[1]{HSE Faculty of Physics \ \ HSE Faculty of Physics HSE Faculty of Physics \ \ HSE Faculty of Physics HSE Faculty of Physics \ \ HSE Faculty of Physics HSE Faculty of Physics \ \ HSE Faculty of Physics HSE Faculty of Physics \ \ HSE Faculty of Physics HSE Faculty of Physics \ \ HSE Faculty of Physics HSE Faculty of Physics \ \ HSE Faculty of Physics HSE Faculty of Physics \ \ HSE Faculty of Physics }
+
+
+\numberwithin{equation}{section}
+
+\begin{document}
+
+
+\begin{flushright}
+    Выполнил:
+    Карибджанов Матвей
+
+    Домашняя работа № 9
+\end{flushright}
+\newpagestyle{main}{
+\setfootrule{0.4pt}
+\setfoot{}{\thepage}{Домашняя работа \ № \ 9}}
+\pagestyle{main}
+% \pagecolor{mycolor}
+
+Вывести уравнения описывающие теорию Бранса — Дикке, которая задаются действием:
+
+\begin{eqnarray}
+    S = \int_\Omega d^4 x \sqrt{-g} \inner{\phi R - \omega \cfrac{\phi_{,i}\phi^{,i}}{\phi}} 
+\end{eqnarray}
+
+\begin{eqnarray}
+    \label{eq:var}
+    \delta S = \int_\Omega d^4 x \inner{\phi R - \omega \cfrac{\phi_{,i}\phi^{,i}}{\phi}}  \delta \inner{-g}^{1/2}
+    + \inner{-g}^{1/2} \delta \phi R 
+    - \inner{-g}^{1/2} \delta\omega \cfrac{\phi_{,i}\phi^{,i}}{\phi}
+\end{eqnarray}
+
+Варьирование по метрике:
+
+\begin{equation}
+    \label{eq:d_phi_R}
+    \delta \phi R = \phi \delta R = \phi \delta R_{ij} g^{ij} 
+    = \phi g^{ij} \delta R_{ij}  + \phi R_{ij} \delta g^{ij}
+\end{equation}
+
+\begin{equation}
+    \label{eq:phi_phi_g}
+    \delta\omega \cfrac{\phi_{,i}\phi^{,i}}{\phi} 
+    = \omega \cfrac{\phi^{,i}\phi^{,j}}{\phi} \delta g_{ij} \inner{-g}^{-1/2}
+    = \omega \inner{-g}^{1/2} \cfrac{\phi^{,i}\phi^{,j}}{\phi} \insqr{ \delta g_{ij} 
+    - \cfrac{1}{2} g_{ij} g^{kl} \delta g_{kl}}
+\end{equation}
+
+Для приведения всего к одному виду в \ref{eq:phi_phi_g} надо раскрыть скобки 
+перименовть немые индексы во втором слагаемом.
+
+\begin{equation}
+    \cfrac{\phi^{,i}\phi^{,j}}{\phi} \insqr{\inner{-g}^{1/2} \delta g_{ij} 
+    - \cfrac{1}{2} \inner{-g}^{1/2} g_{ij} g^{kl} \delta g_{kl}} 
+    = \cfrac{\phi^{,i}\phi^{,j}}{\phi} \inner{-g}^{1/2} \delta g_{ij} 
+    - \cfrac{1}{2} \inner{-g}^{1/2} \cfrac{\phi^{,l}\phi_{,l}}{\phi} g^{ij} \delta g_{ij}
+\end{equation}
+
+Упростим \ref{eq:d_phi_R}, для первого слагаемого можно 
+сразу домножить на $\inner{-g}^{1/2}$ тк этот множитель стоит перед \ref{eq:d_phi_R} в \ref{eq:var}:
+
+\begin{equation}
+    \inner{-g}^{1/2} \phi g^{ij} \delta R_{ij} = 
+    \phi\inner{g^{jk} \delta \Gamma^{i}_{jk} - g^{ji} \delta \Gamma^{k}_{jk}}_{,i}
+    = 
+    \cancel{\inner{ \phi g^{jk} \delta \Gamma^{i}_{jk} - \phi g^{ji} \delta \Gamma^{k}_{jk}}_{,i}}
+    - \phi_{,i} \inner{g^{jk} \delta \Gamma^{i}_{jk} - g^{ji} \delta \Gamma^{k}_{jk}}
+\end{equation}
+
+Теперь варьируем $\Gamma^i_{jk}$ она у нас была на лекции, в принципе как и $R_{ij}$
+
+\begin{equation}
+    \delta \Gamma^i_{jk} = \cfrac{1}{2} g^{il} \insqr{\inner{\delta g_{lj}}_{;k} +
+    \inner{\delta g_{lk}}_{;j} - \inner{\delta g_{jk}}_{;l}}
+\end{equation}
+
+
+Для удобства заметим, что если по  теорме Гаусса-Остроградского 
+интеграл занулился для обычной производной, то он также занулится и для ковариантной 
+производной, так как мы можем прейди в СО где $\nabla_i \to \partial_i$ посчитать интеграл и вернуться, 
+так же вспомним $g_{ij;k} = 0$:
+
+\begin{equation}
+    \label{eq:1}
+    - \phi_{,i} g^{jk} \delta \Gamma^{i}_{jk}
+    = - \cfrac{1}{2} \phi_{,i} g^{jk} g^{il} \insqr{\inner{\delta g_{lj}}_{;k} +
+    \inner{\delta g_{lk}}_{;j} - \inner{\delta g_{jk}}_{;l}}
+    = \cfrac{1}{2} g^{jk} g^{il} \insqr{\phi_{,i;k}\delta g_{lj} +
+    \phi_{,i;j} \delta g_{lk} - \phi_{,i;j} \delta g_{jk}}
+\end{equation}
+
+\begin{equation}
+    \label{eq:2}
+    \phi_{,i} \phi g^{ji} \delta \Gamma^{k}_{jk} =
+    \cfrac{1}{2} \phi_{,i} g^{ji} g^{kl} \insqr{\inner{\delta g_{lj}}_{;k} +
+    \inner{\delta g_{lk}}_{;j} - \inner{\delta g_{jk}}_{;l}}
+    = - \cfrac{1}{2} g^{ji} g^{kl} \insqr{\phi_{,i;k} \delta g_{lj} +
+    \phi_{,i;j}\delta g_{lk} - \phi_{,i}\delta g_{jk}}
+\end{equation}
+
+Поднятие индексоа и переиминовывание покажут, равентво перого члена из \ref{eq:2} с последниего из \ref{eq:1}, 
+а налогично для перого из \ref{eq:1} и последнего \ref{eq:2}, а среднии члены
+в свою очередь взаимосократятся, поэтому получим: 
+
+\begin{equation}
+    \inner{-g}^{1/2} \phi g^{ij} \phi \delta R_{ij} \Rightarrow 
+    \insqr{-\phi_{,i;j} + g_{ij} \phi_{,l}^{;l}} \inner{-g}^{1/2} \delta g^{ij} 
+\end{equation}
+
+Варирование втрого члена из \ref{eq:phi_phi_g}, я проводить не буду, так как результат известен с леции, 
+там получится тензор Эйнштейна. Поэтому вспоминим о вкладе материи в действие:
+
+\begin{equation}
+    16 \pi \cfrac{\delta \mathcal{L}_m}{\delta g_{ij}} = -8\pi T^{ij}
+\end{equation}
+
+Тогда просумировав :
+
+\begin{equation}
+    8\pi T_{ij} = \omega \cfrac{\phi_{,i}\phi_{,j} 
+    - \cfrac{1}{2}g_{ij}\phi_{,i}\phi^{,i}}{\phi} - G_{ij}\phi
+\end{equation}
+
+Тепрь рассмтрим вриацию по полю, первый член из \ref{eq:var} занулится:
+
+\begin{equation}
+    \inner{-g}^{1/2} \delta \phi R  = \inner{-g}^{1/2} R \delta \phi
+\end{equation}
+
+\begin{equation}
+    \inner{-g}^{1/2} \delta\omega \cfrac{\phi_{,i}\phi^{,i}}{\phi} =
+    \inner{-g}^{1/2} \omega \phi_{,i}\phi^{,i} \delta \cfrac{1}{\phi} 
+    + \inner{-g}^{1/2} \omega \cfrac{1}{\phi}  \delta \phi_{,i}\phi^{,i} 
+    = -\inner{-g}^{1/2} \omega \phi_{,i}\phi^{,i} \cfrac{1}{\phi^2} \delta \phi 
+    + 2  \omega \partial_i \inner{\cfrac{\phi_{,i}\inner{-g}^{1/2}}{\phi}} \delta \phi
+\end{equation}
+
+Для второго слагаемого снова воспользовался к теоремой Гаусса-Остроградского, а коэф.
+2 появился из-аз двух одинаковых $\phi^{,i}$ и $\phi_{,i}$. Материя не дает вклад в 
+варицию по полю, поэтому в итоге вариация по полю даст нам:
+
+\begin{equation}
+    \inner{-g}^{1/2} \inner{\omega \cfrac{\phi_{,i}\phi^{,i}}{\phi^2} + R} 
+    + 2  \omega \partial_i \cfrac{\phi_{,i}\inner{-g}^{1/2}}{\phi} = 0
+\end{equation}
+\end{document}

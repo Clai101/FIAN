@@ -1,0 +1,54 @@
+\section{Задние}
+
+Доказать что:
+\begin{equation}
+    A^i_{\ ;i} = \cfrac{1}{\sqrt{-g}} \piv{}{x^i}\inner{\sqrt{-g} A^i}
+\end{equation}
+
+Справа получим:
+
+\begin{equation}
+    \piv{}{x^i}\inner{\sqrt{-g} A^i} = 
+    \piv{\sqrt{-g}}{x^i}A^i + \sqrt{-g}\piv{A^i}{x^i} = 
+    -\cfrac{1}{2\sqrt{-g}} \piv{g}{x^i}A^i + \sqrt{-g}\piv{A^i}{x^i} =
+    \cfrac{gg_{jk}g^{jk}_{\ \ ,i}}{2\sqrt{-g}} A^i + \sqrt{-g}\piv{A^i}{x^i}
+\end{equation}
+
+Слева распишем по определению:
+\begin{equation}
+    A^i_{\ ;i} = \piv{A^i}{x^i} + \Gamma^j_{\ lj} A^{l} 
+\end{equation}
+
+
+Седеним и сократим что можем:
+\begin{equation}
+    \piv{A^i}{x^i} + \Gamma^j_{\ lj} A^{l} = 
+    \cfrac{1}{\cancel{\sqrt{-g}}} \cfrac{\cancel{g}g_{jk}g^{jk}_{\ \ ,i}}{2\cancel{\sqrt{-g}}} A^i 
+    + \cfrac{\sqrt{-g}}{\cancel{\sqrt{-g}}} \piv{A^i}{x^i}
+    =\cfrac{1}{2} g_{jk}g^{jk}_{\ \ ,i} A^i + \piv{A^i}{x^i}
+\end{equation}
+
+\begin{equation}
+    \label{eq_1}
+    \cancel{\piv{A^i}{x^i}} + \Gamma^j_{\ lj} A^{l} = 
+    \cfrac{1}{2} g_{jk}g^{jk}_{\ \ ,i} A^i + \cancel{\piv{A^i}{x^i}}
+\end{equation}
+
+Теперь поиграемся:
+
+\begin{equation}
+    \Gamma_{ijk} + \Gamma_{jik} = \crist{i}{j}{k} + \crist{j}{i}{k} = g_{ij,k}
+\end{equation}
+
+\begin{equation}
+    g^{ij}_{\ \ ,k} = -\inner{\Gamma_{lnk} + \Gamma_{nlk}} g^{nj} g^{li}
+\end{equation}
+
+\begin{equation}
+    \label{eq_2}
+    g_{jk}g^{jk}_{\ \ ,i} = -\inner{\Gamma_{lni} + \Gamma_{nli}} g^{nk} g^{lj }g_{jk} = -\inner{\Gamma_{lni} + \Gamma_{nli}} g^{nl} = 2 \Gamma^l_{\ li} = 2 \Gamma^l_{\ il}
+\end{equation}
+
+Подставляем в \ref{eq_1} и получем верное тождество.
+
+

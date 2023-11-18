@@ -1,0 +1,63 @@
+Надем вектора Киллинага в системе с метрикой:
+\begin{gather}
+    g_{ij} = 
+    \begin{pmatrix}
+        1 & 0
+        0 & cos^2 \theta
+    \end{pmatrix}
+\end{gather}
+
+Из дз 3 мы уже знаем что в такой системе не нелулевыми 
+будут только компонетами афинной связности будут 
+$\Gamma^{2}_{\ 21}, \Gamma^{2}_{\ 12}, \Gamma^{1}_{\ 22}$, 
+они имеют следующие значения:
+
+\begin{equation}
+    \Gamma^{2}_{\ 21} = \Gamma^{2}_{\ 12} = \cot \theta, \ \Gamma^{2}_{\ 11} = - \sin \theta \cos \theta
+\end{equation}
+
+Теперь подставим в формулу
+
+\begin{equation}
+    \xi_{i;j} + \xi_{i;j} = \xi_{i,j} - \xi_{k} \Gamma^{k}_{\ ij} 
+    + \xi_{j,i} - \xi_{k} \Gamma^{k}_{\ ji} = 
+    \xi_{i,j} + \xi_{j,i} - 2 \xi_{k} \Gamma^{k}_{\ ji}
+\end{equation}
+
+\begin{gather}
+    \begin{pmatrix}
+        \piv{\xi_1}{\phi} & \piv{\xi_1}{\theta} \\
+        \piv{\xi_2}{\phi} & \piv{\xi_2}{\theta}
+    \end{pmatrix}
+    + 
+    \begin{pmatrix}
+        \piv{\xi_1}{\phi} & \piv{\xi_2}{\phi} \\
+        \piv{\xi_1}{\theta} & \piv{\xi_2}{\theta}
+    \end{pmatrix}
+    - 
+    2\xi_2
+    \begin{pmatrix}
+        -\sin \theta \cos \theta & \cot \theta\\
+        \cot \theta & 0
+    \end{pmatrix}
+\end{gather}
+
+Перкпишем в виде:
+
+Из из элемента мариц 22 поймем что:
+
+\begin{equation}
+    \xi_2 = \xi_2(\phi) 
+\end{equation}
+
+Подставим в 11:
+
+\begin{equation}
+    \xi_1 = -2 \sin \theta \cos \theta \int \xi_2 d\phi +C(\theta)
+\end{equation}
+
+А теперь посмтрим что в побочной диаганали:
+
+\begin{equation}
+    \xi_2' + \inner{\cos^2\theta - \sin^2\theta} \int \xi_2 d\phi + C'(\theta) = cot(\theta)
+\end{equation}
